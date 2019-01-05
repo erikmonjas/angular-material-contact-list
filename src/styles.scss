@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "./bootstrap-grid.css";
+
+body{
+    background-color: #424242;
+}
+
+.text-green{
+    color:#69f0ae
+}
