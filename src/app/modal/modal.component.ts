@@ -18,10 +18,6 @@ export class ModalComponent implements OnInit {
     const dialogRef = this.dialog.open(ContactFormComponent, {
       width: '80vw'
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
   }
 
 }

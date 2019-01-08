@@ -21,6 +21,8 @@ export class ContactFormComponent implements OnInit {
     notes: ['']
   });
 
+  contactObject:any;
+
   constructor(private fb: FormBuilder, private ngZone: NgZone, private contactService: ContactService, public dialogRef: MatDialogRef<ContactFormComponent>) { }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -32,6 +34,12 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getContact();
+    if(!!this.contactObject){
+      const contactWithoutId = {name: this.contactObject.name, email: this.contactObject.email, phone: this.contactObject.phone, address: this.contactObject.address, notes: this.contactObject.notes,};
+      
+      this.contactData.setValue(contactWithoutId);
+    }
   }
 
   onSubmit() {
@@ -46,4 +54,8 @@ export class ContactFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  getContact(): void {
+    this.contactService.getContact(this.contactService.contactId.value)
+      .subscribe(contact => this.contactObject = contact);
+  }
 }

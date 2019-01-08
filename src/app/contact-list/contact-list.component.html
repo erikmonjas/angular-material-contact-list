@@ -44,7 +44,7 @@
           <div class="col-2 col-md-1 d-flex justify-content-end">
             <mat-icon color="accent" [matMenuTriggerFor]="menu">more_horiz</mat-icon>
             <mat-menu #menu="matMenu">
-                  <button mat-menu-item><mat-icon color="accent">visibility</mat-icon> View / Edit</button>
+                  <button mat-menu-item (click)="openDialog(contact.id)"><mat-icon color="accent">visibility</mat-icon> View / Edit</button>
                   <button mat-menu-item><mat-icon color="accent">star_outline</mat-icon> Add To Favs</button>
                   <button mat-menu-item (click)="deleteContact(contact.id)"><mat-icon color="accent">delete_outline</mat-icon> Delete</button>
             </mat-menu>
