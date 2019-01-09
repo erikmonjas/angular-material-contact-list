@@ -1,3 +1,4 @@
-<p>
-  top-menu works!
-</p>
+<div class="d-flex mt-5">
+  <button [mat-raised-button]="showingAll ? '' : null" [color]="showingAll ? 'primary' : null" class="mr-4" (click)="showAll()">All</button>
+  <button [mat-raised-button]="showingFavs ? '' : null" [color]="showingFavs ? 'primary' : null" (click)="showFavs()">Favs</button>
+</div>
