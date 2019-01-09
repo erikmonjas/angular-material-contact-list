@@ -41,19 +41,23 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-6">
-                <mat-icon color="accent">star_outline</mat-icon>
+        <div class="row mt-4 d-flex flex-row-reverse">
+            <div class="col-12 col-md-6 d-flex justify-content-end">
+                <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary" *ngIf="!contactObject">Add Contact</button>
+
+                <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary" *ngIf="!!contactObject">Update Contact</button>
             </div>
             
-            <div class="col-6 d-flex justify-content-end" *ngIf="!contactObject">
-                <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary">Add Contact</button>
-            </div>
+            <div class="col-12 col-md-6">
+                <button mat-button class="pl-0" *ngIf="!contactData.value.isFav" (click)="toggleFav()">
+                    <mat-icon color="accent">favorite_border</mat-icon>
+                    <span class="ml-2 mt-1 d-inline-block">Add To Favs</span>
+                </button>
 
-            <!-- POR HACER: MODIFICAR LA FUNCIONALIDAD DEL SUBMIT DEPENDIENDO DE SI CONTACT OBJECT EXISTE -->
-
-            <div class="col-6 d-flex justify-content-end" *ngIf="!!contactObject">
-                <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary">Update Contact</button>
+                <button mat-button class="pl-0" *ngIf="!!contactData.value.isFav" (click)="toggleFav()">
+                    <mat-icon color="accent">favorite</mat-icon>
+                    <span class="ml-2 mt-1 d-inline-block">Remove From Favs</span>
+                </button>
             </div>
         </div>
     </form>

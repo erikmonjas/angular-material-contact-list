@@ -37,5 +37,32 @@ export class ContactService {
     this.contactId.next(id);
   }
 
+  emptyContactId(){
+    this.contactId.next(undefined);
+  }
+
+  updateContact(id, contactData) {
+    const contact = CONTACTS.find(contact => 
+      contact.id === id
+    );
+    contact.name = contactData.name;
+    contact.email = contactData.email;
+    contact.phone = contactData.phone;
+    contact.address = contactData.address;
+    contact.notes = contactData.notes;
+  }
+
+  toggleFav(id) {
+
+    const contact = CONTACTS.find(contact => 
+      contact.id === id
+    );
+    if (!!contact.isFav){
+      contact.isFav = false;
+    } else {
+      contact.isFav = true;
+    }
+  }
+
   constructor() { }
 }

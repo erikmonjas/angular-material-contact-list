@@ -18,10 +18,13 @@ export class ContactFormComponent implements OnInit {
     email: [''],
     phone: [''],
     address: [''],
-    notes: ['']
+    notes: [''],
+    isFav:[false]
   });
 
   contactObject:any;
+
+  contactWithoutId:any;
 
   constructor(private fb: FormBuilder, private ngZone: NgZone, private contactService: ContactService, public dialogRef: MatDialogRef<ContactFormComponent>) { }
 
@@ -36,16 +39,29 @@ export class ContactFormComponent implements OnInit {
   ngOnInit() {
     this.getContact();
     if(!!this.contactObject){
-      const contactWithoutId = {name: this.contactObject.name, email: this.contactObject.email, phone: this.contactObject.phone, address: this.contactObject.address, notes: this.contactObject.notes,};
+      this.contactWithoutId = {name: this.contactObject.name, email: this.contactObject.email, phone: this.contactObject.phone, address: this.contactObject.address, notes: this.contactObject.notes, isFav: this.contactObject.isFav};
       
-      this.contactData.setValue(contactWithoutId);
+      this.contactData.setValue(this.contactWithoutId);
     }
   }
 
+  ngOnDestroy() {
+    this.contactService.emptyContactId();
+  }
+
   onSubmit() {
-    const contact = this.contactData.value;
-    contact.id = new Date().getTime();
-    this.contactService.createContact(contact);
+    if (!this.contactObject){
+      const contact = this.contactData.value;
+      contact.id = new Date().getTime();
+      this.contactService.createContact(contact);
+    } else {
+      this.contactService.updateContact(this.contactObject.id, this.contactData.value);
+      // this.contactService.deleteContact(this.contactObject.id);
+
+      // const contact = this.contactData.value;
+      // contact.id = this.contactObject.id;
+      // this.contactService.createContact(contact);
+    }
     this.contactData.reset();
     this.dialogRef.close();
   }
@@ -57,5 +73,10 @@ export class ContactFormComponent implements OnInit {
   getContact(): void {
     this.contactService.getContact(this.contactService.contactId.value)
       .subscribe(contact => this.contactObject = contact);
+  }
+
+  toggleFav(){
+    this.contactData.value.isFav = !this.contactData.value.isFav;
+    console.log(this.contactData.value.isFav);
   }
 }

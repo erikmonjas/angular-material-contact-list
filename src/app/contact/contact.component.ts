@@ -5,4 +5,5 @@ export class Contact {
   phone: number;
   address: string;
   notes: string;
+  isFav: boolean;
 }

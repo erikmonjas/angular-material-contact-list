@@ -15,9 +15,15 @@ export class ModalComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '80vw'
-    });
+    if (window.innerWidth < 768){
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '80vw'
+      });
+    } else {
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '60vw'
+      });
+    }
   }
 
 }

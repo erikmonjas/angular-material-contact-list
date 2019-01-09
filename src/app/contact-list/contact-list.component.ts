@@ -27,11 +27,21 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteContact(id);
   }
 
+  toggleFav(id) {
+    this.contactService.toggleFav(id);
+  }
+
   openDialog(id): void {
     this.contactService.getContactId(id);
-    const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '80vw'
-    });
+    if (window.innerWidth < 768){
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '80vw'
+      });
+    } else {
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '60vw'
+      });
+    }
   }
 
 }
