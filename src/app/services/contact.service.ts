@@ -50,6 +50,7 @@ export class ContactService {
     contact.phone = contactData.phone;
     contact.address = contactData.address;
     contact.notes = contactData.notes;
+    contact.isFav = contactData.isFav;
   }
 
   toggleFav(id) {

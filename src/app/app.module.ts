@@ -20,13 +20,15 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ModalComponent } from './modal/modal.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
     ContactFormComponent,
-    ModalComponent
+    ModalComponent,
+    TopMenuComponent
   ],
   imports: [
     BrowserModule,

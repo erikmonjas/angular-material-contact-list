@@ -56,11 +56,6 @@ export class ContactFormComponent implements OnInit {
       this.contactService.createContact(contact);
     } else {
       this.contactService.updateContact(this.contactObject.id, this.contactData.value);
-      // this.contactService.deleteContact(this.contactObject.id);
-
-      // const contact = this.contactData.value;
-      // contact.id = this.contactObject.id;
-      // this.contactService.createContact(contact);
     }
     this.contactData.reset();
     this.dialogRef.close();
@@ -77,6 +72,5 @@ export class ContactFormComponent implements OnInit {
 
   toggleFav(){
     this.contactData.value.isFav = !this.contactData.value.isFav;
-    console.log(this.contactData.value.isFav);
   }
 }
