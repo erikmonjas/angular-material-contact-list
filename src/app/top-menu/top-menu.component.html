@@ -1,7 +1,7 @@
-<div class="d-flex mt-5">
-  <button mat-button class="mr-4 text-white active" *ngIf="!!showingAll">All</button>
-  <button mat-button class="mr-4 text-white" (click)="showAll()" *ngIf="!showingAll">All</button>
+<div class="d-flex">
+  <button mat-button class="active" *ngIf="!!showingAll">All</button>
+  <button mat-button (click)="showAll()" *ngIf="!showingAll">All</button>
 
-  <button mat-button class="mr-4 text-white active" *ngIf="!!showingFavs">Favs</button>
-  <button mat-button class="mr-4 text-white" (click)="showFavs()" *ngIf="!showingFavs">Favs</button>
+  <button mat-button class="active" *ngIf="!!showingFavs">Favs</button>
+  <button mat-button (click)="showFavs()" *ngIf="!showingFavs">Favs</button>
 </div>
