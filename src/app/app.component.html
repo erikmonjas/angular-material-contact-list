@@ -1,13 +1,4 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
-  <div class="row mt-3 mb-5">
-    <div class="col-12 col-md-3 col-xl-2 mt-4">
-        <app-modal class="d-block"></app-modal>
-    </div>
-    <div class="col-12 col-md-9 col-xl-10 mb-5">
-      <top-menu class="d-block mt-4 mb-2" (favsView)="favsEvent($event)"></top-menu>
-      <contact-list *ngIf="!favsView"></contact-list>
-      <fav-list *ngIf="!!favsView"></fav-list>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

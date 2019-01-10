@@ -22,6 +22,10 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ModalComponent } from './modal/modal.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FavListComponent } from './fav-list/fav-list.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { FavListComponent } from './fav-list/fav-list.component';
     ContactFormComponent,
     ModalComponent,
     TopMenuComponent,
-    FavListComponent
+    FavListComponent,
+    HomePageComponent,
+    RegisterPageComponent,
+    RegisterFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
