@@ -15,12 +15,13 @@ export class ContactService {
   contactIdObs = this.contactId.asObservable();
 
   getContacts(): Observable<Contact[]> {
+    this.sortContacts();
     return of(CONTACTS);
   }
 
   createContact(contact): void{
     CONTACTS.push(contact);
-    return
+    this.sortContacts();
   }
 
   deleteContact(id): void{
@@ -51,6 +52,7 @@ export class ContactService {
     contact.address = contactData.address;
     contact.notes = contactData.notes;
     contact.isFav = contactData.isFav;
+    this.sortContacts();
   }
 
   toggleFav(id) {
@@ -63,6 +65,22 @@ export class ContactService {
     } else {
       contact.isFav = true;
     }
+  }
+
+  sortContacts() {
+    function compare(a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+
+      if (a.name > b.name) {
+        return 1
+      }
+
+      return 0
+    }
+
+    CONTACTS.sort(compare);
   }
 
   constructor() { }

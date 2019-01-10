@@ -21,6 +21,7 @@ import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ModalComponent } from './modal/modal.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
+import { FavListComponent } from './fav-list/fav-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
     ContactListComponent,
     ContactFormComponent,
     ModalComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    FavListComponent
   ],
   imports: [
     BrowserModule,

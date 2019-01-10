@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'top-menu',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
+  showingAll:boolean = true;
+  showingFavs:boolean = false;
+  @Output() favsView = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showAll() {
+    this.showingAll = true;
+    this.showingFavs = false;
+    this.favsView.emit(false);
+  }
+  
+  showFavs() {
+    this.showingAll = false;
+    this.showingFavs = true;
+    this.favsView.emit(true);
   }
 
 }

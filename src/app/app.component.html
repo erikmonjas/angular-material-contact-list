@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-9 offset-md-3 col-xl-10 offset-xl-2">
-      <top-menu></top-menu>
+      <top-menu (favsView)="favsEvent($event)"></top-menu>
     </div>
   </div>
   <div class="row mt-3">
@@ -10,7 +10,8 @@
         <app-modal></app-modal>
     </div>
     <div class="col-12 col-md-9 col-xl-10">
-      <contact-list></contact-list>
+      <contact-list *ngIf="!favsView"></contact-list>
+      <fav-list *ngIf="!!favsView"></fav-list>
     </div>
   </div>
   

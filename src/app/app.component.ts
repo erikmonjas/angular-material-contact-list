@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'contact-list';
+  favsView:boolean;
+
+  favsEvent(value) {
+    this.favsView = value;
+  }
 }
