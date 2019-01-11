@@ -27,6 +27,11 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +60,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule, 
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   entryComponents: [
     ContactFormComponent
