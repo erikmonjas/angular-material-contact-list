@@ -1,3 +1,40 @@
-<p>
-  login-form works!
-</p>
+<form [formGroup]="userData" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+        <div class="col-12 mt-3">
+            <mat-form-field appearance="standard" color="accent" class="w-100">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="E-mail" type="text" formControlName="userEmail">
+                <mat-error *ngIf="!userData.value.userEmail">
+                    E-mail is required
+                </mat-error>
+                <mat-error *ngIf="!userData.value.userEmail.valid && userData.value.userEmail">
+                    E-mail must be valid
+                </mat-error>
+            </mat-form-field>
+
+            
+            <mat-form-field appearance="standard" color="accent" class="w-100">
+                <mat-label>Password</mat-label>
+                <input 
+                    matInput 
+                    placeholder="Password" 
+                    type="password" 
+                    formControlName="userPass"
+                >
+                <mat-error *ngIf="!userData.value.userPass">
+                    Password is required
+                </mat-error>
+                <mat-error *ngIf="!userData.value.userPass.valid && userData.value.userPass">
+                    Password must be at least 4 characters long
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-12 mt-3 d-flex justify-content-end">
+            <button mat-raised-button type="submit" [disabled]="!userData.valid" color="primary">Log In</button>
+        </div>
+
+    </div>
+    
+</form>

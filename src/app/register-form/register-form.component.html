@@ -1,4 +1,4 @@
-<form [formGroup]="userData" (ngChange)="alert()" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+<form [formGroup]="userData" (ngSubmit)="onSubmit()">
     <div class="row">
 
         <div class="col-12 mt-3">
@@ -33,7 +33,7 @@
 
             
             <mat-form-field appearance="standard" color="accent" class="w-100" 
-                [ngClass]="!!userData.value.userPass && !!userData.value.userPassRepeat && !passwordsMatch ? 'mat-form-field-invalid' : null">
+                [ngClass]="!!userData.value.userPass && userData.value.userPassRepeat.length > 0 && !passwordsMatch ? 'mat-form-field-invalid' : null">
                 <mat-label>Confirm Password</mat-label>
                 <input 
                     matInput 
@@ -49,12 +49,12 @@
         </div>
 
         <div class="col" *ngIf="!!userData.value.userPass && !!userData.value.userPassRepeat && !passwordsMatch">
-            <p class="passwords-message">
+            <p class="passwords-message mb-0">
                 Please, make sure your passwords match 
             </p>
         </div>
 
-        <div class="col-12 mt-3">
+        <div class="col-12 mt-3 d-flex justify-content-end">
             <button mat-raised-button type="submit" [disabled]="!userData.valid" color="primary">Register</button>
         </div>
 
