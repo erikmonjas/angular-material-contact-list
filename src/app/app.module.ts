@@ -14,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { ContactListComponent } from './contact-list/contact-list.component';
@@ -25,7 +26,7 @@ import { FavListComponent } from './fav-list/fav-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
-import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginFormComponent, WrongDataAlertComponent } from './login-form/login-form.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -43,7 +44,8 @@ import { environment } from '../environments/environment';
     HomePageComponent,
     RegisterPageComponent,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    WrongDataAlertComponent
   ],
   imports: [
     BrowserModule,
@@ -60,12 +62,14 @@ import { environment } from '../environments/environment';
     MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule, 
+    MatDialogModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
   entryComponents: [
-    ContactFormComponent
+    ContactFormComponent,
+    WrongDataAlertComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
