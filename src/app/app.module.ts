@@ -33,6 +33,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
 
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/notAuth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +76,10 @@ import { environment } from '../environments/environment';
     WrongDataAlertComponent,
     WrongRegisterComponent
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    NotAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
