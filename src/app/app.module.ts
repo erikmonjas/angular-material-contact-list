@@ -25,7 +25,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FavListComponent } from './fav-list/fav-list.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import { RegisterFormComponent, WrongRegisterComponent } from './register-form/register-form.component';
 import { LoginFormComponent, WrongDataAlertComponent } from './login-form/login-form.component';
 
 import { AngularFireModule } from 'angularfire2';
@@ -45,7 +45,8 @@ import { environment } from '../environments/environment';
     RegisterPageComponent,
     RegisterFormComponent,
     LoginFormComponent,
-    WrongDataAlertComponent
+    WrongDataAlertComponent,
+    WrongRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +70,8 @@ import { environment } from '../environments/environment';
   ],
   entryComponents: [
     ContactFormComponent,
-    WrongDataAlertComponent
+    WrongDataAlertComponent,
+    WrongRegisterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

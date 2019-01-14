@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -8,7 +9,15 @@ import * as firebase from 'firebase/app';
 })
 export class AuthService {
 
+  wrongRegisterMsg = new BehaviorSubject<string>('');
+  wrongRegisterMsgObs = this.wrongRegisterMsg.asObservable();
+
   constructor(public afAuth: AngularFireAuth) {  }
+
+
+  registrationError(err) {
+    this.wrongRegisterMsg.next(err);
+  }
 
   registerUser(email:string, pass:string){
     return new Promise((resolve, reject) => {
