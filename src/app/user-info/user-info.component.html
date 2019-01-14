@@ -1,0 +1,12 @@
+<div>
+  <div [matMenuTriggerFor]="logOut" class="d-flex flex-column align-items-end account">
+    <mat-icon class="account__icon">account_circle</mat-icon>
+    <span class="mat-small mt-1">{{userName}}</span>
+  </div>
+
+  <mat-menu #logOut="matMenu">
+    <button mat-menu-item (click)="signOut()">
+      Sign Out
+    </button>
+  </mat-menu>
+</div>

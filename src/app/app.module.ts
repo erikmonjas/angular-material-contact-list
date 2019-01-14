@@ -34,7 +34,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 import { AuthGuard } from './guards/auth.guard';
-import { NotAuthGuard } from './guards/notAuth.guard';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     RegisterFormComponent,
     LoginFormComponent,
     WrongDataAlertComponent,
-    WrongRegisterComponent
+    WrongRegisterComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -77,8 +78,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     WrongRegisterComponent
   ],
   providers: [
-    AuthGuard,
-    NotAuthGuard
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
