@@ -40,7 +40,7 @@ export class RegisterFormComponent implements OnInit {
       }).catch( (err) => {
         this.authService.registrationError(err.message);
         this.snackBar.openFromComponent(WrongRegisterComponent, {
-          duration: 2000000
+          duration: 2000
         });
       } )
   }

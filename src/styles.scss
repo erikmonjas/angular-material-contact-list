@@ -15,8 +15,6 @@ body{
 .mat-snack-bar-container{
     background-color: #f44336;
     color: #fff;
-}
-
-.cdk-overlay-pane{
+    margin: 0 20vw !important;
     margin-bottom: calc(50vh - 48px)!important;
 }
