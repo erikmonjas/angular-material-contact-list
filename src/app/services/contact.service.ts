@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AuthService } from '../services/auth.service';
 
 
 import { Contact } from '../contact/contact.component';
@@ -24,10 +27,32 @@ export class ContactService {
     this.sortContacts();
   }
 
+  createFBContact(contact):void{
+    let userUID:string;
+    const contactID = new Date().getTime().toString();
+    this.authService.getAuth().subscribe( auth => {
+      if(!!auth){
+        userUID = auth.uid;
+        this.afs.collection(userUID).doc(contactID).set(contact);
+      }
+    })
+    // this.afs.collection('erik.monjas').doc('first').set({name: 'Alba', phone: '65489781'})
+  }
+
   deleteContact(id): void{
     const contactToDelete = CONTACTS.find(contact => contact.id === id);
     const indexOfContactToDelete = CONTACTS.indexOf(contactToDelete);
     CONTACTS.splice(indexOfContactToDelete, 1);
+  }
+
+  deleteFBContact(id){
+    let userUID:string;
+    this.authService.getAuth().subscribe( auth => {
+      if(!!auth){
+        userUID = auth.uid;
+        this.afs.collection(userUID).doc(id).delete();
+      }
+    })
   }
 
   getContact(id: string): Observable<Contact> {
@@ -83,5 +108,5 @@ export class ContactService {
     CONTACTS.sort(compare);
   }
 
-  constructor() { }
+  constructor(private afs: AngularFirestore, private authService: AuthService) { }
 }

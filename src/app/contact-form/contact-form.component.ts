@@ -52,8 +52,8 @@ export class ContactFormComponent implements OnInit {
   onSubmit() {
     if (!this.contactObject){
       const contact = this.contactData.value;
-      contact.id = new Date().getTime();
-      this.contactService.createContact(contact);
+      // contact.id = new Date().getTime();
+      this.contactService.createFBContact(contact);
     } else {
       this.contactService.updateContact(this.contactObject.id, this.contactData.value);
     }

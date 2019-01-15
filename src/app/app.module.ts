@@ -30,6 +30,9 @@ import { LoginFormComponent, WrongDataAlertComponent } from './login-form/login-
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 
@@ -70,7 +73,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
     MatDialogModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   entryComponents: [
     ContactFormComponent,
@@ -78,7 +83,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     WrongRegisterComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
