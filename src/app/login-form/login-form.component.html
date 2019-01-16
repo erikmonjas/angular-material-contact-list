@@ -31,7 +31,8 @@
             </mat-form-field>
         </div>
 
-        <div class="col-12 mt-3 d-flex justify-content-end">
+        <div class="col-12 mt-3 d-flex justify-content-between">
+            <a mat-button [routerLink]="['/recover-password']" class="p-0">Recover Password</a>
             <button mat-raised-button type="submit" [disabled]="!userData.valid" color="primary">Log In</button>
         </div>
 

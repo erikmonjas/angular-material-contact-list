@@ -27,6 +27,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { RegisterFormComponent, WrongRegisterComponent } from './register-form/register-form.component';
 import { LoginFormComponent, WrongDataAlertComponent } from './login-form/login-form.component';
+import { RecoverPasswordPageComponent, RecoverPassErrorComponent } from './recover-password-page/recover-password-page.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -53,7 +54,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
     LoginFormComponent,
     WrongDataAlertComponent,
     WrongRegisterComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    RecoverPasswordPageComponent,
+    RecoverPassErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
   entryComponents: [
     ContactFormComponent,
     WrongDataAlertComponent,
-    WrongRegisterComponent
+    WrongRegisterComponent,
+    RecoverPassErrorComponent
   ],
   providers: [
     AuthGuard,
