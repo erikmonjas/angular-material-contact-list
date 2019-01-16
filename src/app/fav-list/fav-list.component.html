@@ -50,12 +50,12 @@
                       View / Edit
                     </button>
                     
-                    <button mat-menu-item (click)="toggleFav(contact.id)" *ngIf="!contact.isFav">
+                    <button mat-menu-item (click)="toggleFav(contact.id, contact.isFav)" *ngIf="!contact.isFav">
                       <mat-icon color="accent">favorite_border</mat-icon> 
                       Add To Favs
                     </button>
                     
-                    <button mat-menu-item (click)="toggleFav(contact.id)" *ngIf="!!contact.isFav">
+                    <button mat-menu-item (click)="toggleFav(contact.id, contact.isFav)" *ngIf="!!contact.isFav">
                         <mat-icon color="accent">favorite</mat-icon> 
                         Remove From Favs
                     </button>

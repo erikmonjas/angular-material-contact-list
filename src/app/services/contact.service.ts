@@ -113,6 +113,22 @@ export class ContactService {
     }
   }
 
+  toggleFBFav(id, isFavReceived){
+    let userUID:string;
+
+    if (!!isFavReceived){
+      isFavReceived = false;
+    } else {
+      isFavReceived = true;
+    }
+    this.authService.getAuth().subscribe( auth => {
+      if(!!auth){
+        userUID = auth.uid;
+        this.afs.collection(userUID).doc(id).update({isFav: isFavReceived});
+      }
+    })
+  }
+
   sortContacts() {
     function compare(a, b) {
       if (a.name < b.name) {
@@ -127,6 +143,22 @@ export class ContactService {
     }
 
     CONTACTS.sort(compare);
+  }
+
+  sortFBContacts(contactsToSort){
+    function compare(a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+
+      if (a.name > b.name) {
+        return 1
+      }
+
+      return 0
+    }
+
+    contactsToSort.sort(compare);
   }
 
   contactDataForDialog(contactData) {

@@ -34,8 +34,8 @@ export class ContactListComponent implements OnInit {
     this.contactService.deleteFBContact(id);
   }
 
-  toggleFav(id) {
-    this.contactService.toggleFav(id);
+  toggleFav(id, isFav) {
+    this.contactService.toggleFBFav(id, isFav);
   }
 
   // openDialog(id): void {
@@ -54,16 +54,16 @@ export class ContactListComponent implements OnInit {
   openDialog(id): void {
     let thisContact = this.contacts.find(contact => contact.id == id);
     this.contactService.contactDataForDialog(thisContact);
-      if (window.innerWidth < 768){
-        const dialogRef = this.dialog.open(ContactFormComponent, {
-          width: '80vw'
-        });
-      } else {
-        const dialogRef = this.dialog.open(ContactFormComponent, {
-          width: '60vw'
-        });
-      }
+    if (window.innerWidth < 768){
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '80vw'
+      });
+    } else {
+      const dialogRef = this.dialog.open(ContactFormComponent, {
+        width: '60vw'
+      });
     }
+  }
 
   getAllFBContacts(){
     let userUID:string;
@@ -71,11 +71,10 @@ export class ContactListComponent implements OnInit {
       if(!!auth){
         userUID = auth.uid;
         this.afs.collection(userUID).snapshotChanges().subscribe(data => {
-          this.contacts = data.map(e => {
-            return {
-              ...e.payload.doc.data()
-            } as Contact;
-          })
+          this.contacts = data.map(e => 
+            e.payload.doc.data() as Contact
+          )
+          return this.contactService.sortFBContacts(this.contacts);
         })
       }
     })

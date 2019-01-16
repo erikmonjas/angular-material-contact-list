@@ -93,24 +93,6 @@ export class ContactFormComponent implements OnInit {
   //     .subscribe(contact => this.contactObject = contact);
   // }
 
-  getContact(){
-    let thisContactID = this.contactService.contactId;
-    let userUID:string;
-    let contacts:object[];
-    this.authService.getAuth().subscribe( auth => {
-      if(!!auth){
-        userUID = auth.uid;
-        this.afs.collection(userUID).snapshotChanges().subscribe(data => {
-          contacts = data.map(e => 
-            e.payload.doc.data()
-          )
-          this.contactObject = contacts.find(contact => contact.id == thisContactID.value);
-          return this.contactObject;
-        })
-      }
-    })
-  }
-
   toggleFav(){
     this.contactData.value.isFav = !this.contactData.value.isFav;
   }
