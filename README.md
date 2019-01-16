@@ -1,6 +1,7 @@
-# ContactList
+# Contact List
+### Built with Angular 7, Angular Material and Firestore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+[Enjoy it here](https://erikmonjas.github.io/angular-material-contact-list)
 
 ## Development server
 
