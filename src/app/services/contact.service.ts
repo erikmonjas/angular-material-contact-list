@@ -19,15 +19,15 @@ export class ContactService {
 
   contactForDialog = new BehaviorSubject<any>('');
 
-  getContacts(): Observable<Contact[]> {
-    this.sortContacts();
-    return of(CONTACTS);
-  }
+  // getContacts(): Observable<Contact[]> {
+  //   this.sortContacts();
+  //   return of(CONTACTS);
+  // }
 
-  createContact(contact): void{
-    CONTACTS.push(contact);
-    this.sortContacts();
-  }
+  // createContact(contact): void{
+  //   CONTACTS.push(contact);
+  //   this.sortContacts();
+  // }
 
   createFBContact(contact):void{
     let userUID:string;
@@ -41,11 +41,11 @@ export class ContactService {
     })
   }
 
-  deleteContact(id): void{
-    const contactToDelete = CONTACTS.find(contact => contact.id === id);
-    const indexOfContactToDelete = CONTACTS.indexOf(contactToDelete);
-    CONTACTS.splice(indexOfContactToDelete, 1);
-  }
+  // deleteContact(id): void{
+  //   const contactToDelete = CONTACTS.find(contact => contact.id === id);
+  //   const indexOfContactToDelete = CONTACTS.indexOf(contactToDelete);
+  //   CONTACTS.splice(indexOfContactToDelete, 1);
+  // }
 
   deleteFBContact(id){
     let userUID:string;
@@ -57,9 +57,9 @@ export class ContactService {
     })
   }
 
-  getContact(id: string): Observable<Contact> {
-    return of(CONTACTS.find(contact => contact.id === id));
-  }
+  // getContact(id: string): Observable<Contact> {
+  //   return of(CONTACTS.find(contact => contact.id === id));
+  // }
 
   getContactId(id) {
     this.contactId.next(id);
@@ -69,18 +69,18 @@ export class ContactService {
     this.contactId.next(undefined);
   }
 
-  updateContact(id, contactData) {
-    const contact = CONTACTS.find(contact => 
-      contact.id === id
-    );
-    contact.name = contactData.name;
-    contact.email = contactData.email;
-    contact.phone = contactData.phone;
-    contact.address = contactData.address;
-    contact.notes = contactData.notes;
-    contact.isFav = contactData.isFav;
-    this.sortContacts();
-  }
+  // updateContact(id, contactData) {
+  //   const contact = CONTACTS.find(contact => 
+  //     contact.id === id
+  //   );
+  //   contact.name = contactData.name;
+  //   contact.email = contactData.email;
+  //   contact.phone = contactData.phone;
+  //   contact.address = contactData.address;
+  //   contact.notes = contactData.notes;
+  //   contact.isFav = contactData.isFav;
+  //   this.sortContacts();
+  // }
 
   updateFBContact(id, contactData) {
     let userUID:string;
@@ -101,17 +101,17 @@ export class ContactService {
     })
   }
 
-  toggleFav(id) {
+  // toggleFav(id) {
 
-    const contact = CONTACTS.find(contact => 
-      contact.id === id
-    );
-    if (!!contact.isFav){
-      contact.isFav = false;
-    } else {
-      contact.isFav = true;
-    }
-  }
+  //   const contact = CONTACTS.find(contact => 
+  //     contact.id === id
+  //   );
+  //   if (!!contact.isFav){
+  //     contact.isFav = false;
+  //   } else {
+  //     contact.isFav = true;
+  //   }
+  // }
 
   toggleFBFav(id, isFavReceived){
     let userUID:string;
@@ -129,21 +129,21 @@ export class ContactService {
     })
   }
 
-  sortContacts() {
-    function compare(a, b) {
-      if (a.name < b.name) {
-        return -1;
-      }
+  // sortContacts() {
+  //   function compare(a, b) {
+  //     if (a.name < b.name) {
+  //       return -1;
+  //     }
 
-      if (a.name > b.name) {
-        return 1
-      }
+  //     if (a.name > b.name) {
+  //       return 1
+  //     }
 
-      return 0
-    }
+  //     return 0
+  //   }
 
-    CONTACTS.sort(compare);
-  }
+  //   CONTACTS.sort(compare);
+  // }
 
   sortFBContacts(contactsToSort){
     function compare(a, b) {
