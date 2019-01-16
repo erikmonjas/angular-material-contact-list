@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
 
 
 import { Contact } from '../contact/contact.component';
-import { CONTACTS } from '../mock-contacts';
+// import { CONTACTS } from '../mock-contacts';
 
 @Injectable({
   providedIn: 'root'
