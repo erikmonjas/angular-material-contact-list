@@ -17,6 +17,8 @@ export class ContactService {
   contactId = new BehaviorSubject<any>('');
   contactIdObs = this.contactId.asObservable();
 
+  contactForDialog = new BehaviorSubject<any>('');
+
   getContacts(): Observable<Contact[]> {
     this.sortContacts();
     return of(CONTACTS);
@@ -30,13 +32,13 @@ export class ContactService {
   createFBContact(contact):void{
     let userUID:string;
     const contactID = new Date().getTime().toString();
+    contact.id = contactID;
     this.authService.getAuth().subscribe( auth => {
       if(!!auth){
         userUID = auth.uid;
         this.afs.collection(userUID).doc(contactID).set(contact);
       }
     })
-    // this.afs.collection('erik.monjas').doc('first').set({name: 'Alba', phone: '65489781'})
   }
 
   deleteContact(id): void{
@@ -80,6 +82,25 @@ export class ContactService {
     this.sortContacts();
   }
 
+  updateFBContact(id, contactData) {
+    let userUID:string;
+    const contactFormatted = {
+      name: contactData.name, 
+      email: contactData.email, 
+      phone: contactData.phone,
+      address: contactData.address,
+      notes: contactData.notes,
+      isFav: contactData.isFav,
+      id: id
+    }
+    this.authService.getAuth().subscribe( auth => {
+      if(!!auth){
+        userUID = auth.uid;
+        this.afs.collection(userUID).doc(id).update(contactFormatted);
+      }
+    })
+  }
+
   toggleFav(id) {
 
     const contact = CONTACTS.find(contact => 
@@ -106,6 +127,13 @@ export class ContactService {
     }
 
     CONTACTS.sort(compare);
+  }
+
+  contactDataForDialog(contactData) {
+    this.contactForDialog.next(contactData);
+  }
+  emptyContactForDialog(){
+    this.contactForDialog.next(undefined);
   }
 
   constructor(private afs: AngularFirestore, private authService: AuthService) { }
