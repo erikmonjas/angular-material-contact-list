@@ -1,0 +1,28 @@
+footer{
+    position: absolute;
+    bottom: 2vw;
+    right: 2vw;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+    @media (max-width: 767px){
+        position: static;
+        background-color: transparent;
+        height: initial;
+        width: initial;
+        margin: 0 auto;
+        box-shadow: initial;
+    }
+}
+
+.footer__github{
+    width: 100px;
+    margin: 0 auto;
+    img{
+        width: 100%;
+        height: auto;
+        filter: invert(1);
+    }
+}

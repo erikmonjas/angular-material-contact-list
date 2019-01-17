@@ -39,6 +39,7 @@ import { environment } from '../environments/environment';
 
 import { AuthGuard } from './guards/auth.guard';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     WrongRegisterComponent,
     UserInfoComponent,
     RecoverPasswordPageComponent,
-    RecoverPassErrorComponent
+    RecoverPassErrorComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

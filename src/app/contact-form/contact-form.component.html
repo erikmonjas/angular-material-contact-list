@@ -41,8 +41,8 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="row mt-4 d-flex flex-row-reverse">
-            <div class="col-12 col-md-6 d-flex justify-content-end">
+        <div class="row mt-md-4 d-flex flex-column-reverse flex-md-row-reverse">
+            <div class="col-12 col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
                 <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary" *ngIf="!contactObject">Add Contact</button>
 
                 <button mat-raised-button type="submit" [disabled]="!contactData.valid" color="primary" *ngIf="!!contactObject">Update Contact</button>
