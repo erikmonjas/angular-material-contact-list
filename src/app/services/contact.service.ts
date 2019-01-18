@@ -172,13 +172,13 @@ export class ContactService {
 
 
 
-  pruebaCrearSubcoleccionFirestore(){
-    this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').set({objectName: 'name', objectID: 'id'});
-  }
+  //pruebaCrearSubcoleccionFirestore(){
+  //  this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').set({objectName: 'name', objectID: 'id'});
+  //}
 
-  pruebaActualizarSubcoleccionFirestore(){
-    this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').update({objectID: 'firstDoc'});
-  }
+  //pruebaActualizarSubcoleccionFirestore(){
+  //  this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').update({objectID: 'firstDoc'});
+  //}
 
 
 
