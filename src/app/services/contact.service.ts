@@ -168,5 +168,24 @@ export class ContactService {
     this.contactForDialog.next(undefined);
   }
 
+
+
+
+
+  pruebaCrearSubcoleccionFirestore(){
+    this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').set({objectName: 'name', objectID: 'id'});
+  }
+
+  pruebaActualizarSubcoleccionFirestore(){
+    this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('childDoc').update({objectID: 'firstDoc'});
+  }
+
+
+
+
+
+
+
+
   constructor(private afs: AngularFirestore, private authService: AuthService) { }
 }

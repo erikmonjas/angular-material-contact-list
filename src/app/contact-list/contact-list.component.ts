@@ -19,6 +19,20 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
     // this.getContacts();
     this.getAllFBContacts();
+
+    // this.contactService.pruebaCrearSubcoleccionFirestore();
+
+    // this.afs.collection('collection').doc('parentDoc').collection('subcollection').doc('secondChildDoc').set({objectName: 'name', objectID: 'id'});
+
+    // this.afs.collection('collection').doc('parentDoc').collection('subcollection').snapshotChanges().subscribe(data => {
+    //   let subcollectionObjects = data.map(e => 
+    //     e.payload.doc.data() as Contact
+    //   )
+    //   console.log(subcollectionObjects);
+    // })
+
+
+
   }
 
   // getContacts(): void {
