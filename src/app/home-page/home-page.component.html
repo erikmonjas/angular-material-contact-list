@@ -9,7 +9,14 @@
         <app-modal class="d-block"></app-modal>
     </div>
     <div class="col-12 col-md-9 col-xl-10 mb-md-5">
-      <top-menu class="d-block mt-4 mb-2" (favsView)="favsEvent($event)"></top-menu>
+        <div class="row mt-4">
+            <div class="col-12 col-md-6">
+                <top-menu (favsView)="favsEvent($event)"></top-menu>
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-md-end mt-1">
+                <app-search></app-search>
+            </div>
+        </div>
       <contact-list *ngIf="!favsView"></contact-list>
       <fav-list *ngIf="!!favsView"></fav-list>
     </div>

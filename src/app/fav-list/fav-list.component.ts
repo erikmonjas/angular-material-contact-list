@@ -15,11 +15,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class FavListComponent implements OnInit {
   contacts: Contact[] = [];
   favs: Contact[] = [];
+  contactsToShow: Contact[] = [];
+  searchValue:string;
 
   constructor(private contactService: ContactService, public dialog: MatDialog, private authService:AuthService, private afs:AngularFirestore) { }
 
   ngOnInit() {
     this.getAllFBContacts();
+    this.filterContacts();
     // this.getContacts();
     // this.favs = this.contacts.filter(contact => !!contact.isFav);
   }
@@ -60,7 +63,6 @@ export class FavListComponent implements OnInit {
   // }
 
   toggleFav(id, isFav) {
-    console.log(id, isFav);
     this.contactService.toggleFBFav(id, isFav);
   }
 
@@ -89,6 +91,31 @@ export class FavListComponent implements OnInit {
         width: '60vw'
       });
     }
+  }
+
+  filterContacts(): void {
+      this.contactService.searchValue.subscribe(searchValue => {
+        this.searchValue = searchValue;
+        this.favs.map(contact => {
+          const contactObject = contact;
+          if (contact.name.toLowerCase().includes(searchValue)){
+            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+              return false
+            } else {
+              this.contactsToShow.push(contactObject)
+              return this.contactService.sortFBContacts(this.contactsToShow);
+            }
+          } else {
+            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+              const indexOfContactToDelete = this.contactsToShow.indexOf(contact);
+              this.contactsToShow.splice(indexOfContactToDelete, 1);
+              return this.contactService.sortFBContacts(this.contactsToShow);
+            } else {
+              return false
+            }
+          }
+        });
+      });
   }
 
 }

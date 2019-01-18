@@ -19,6 +19,8 @@ export class ContactService {
 
   contactForDialog = new BehaviorSubject<any>('');
 
+  searchValue = new BehaviorSubject<any>('');
+
   // getContacts(): Observable<Contact[]> {
   //   this.sortContacts();
   //   return of(CONTACTS);
@@ -166,6 +168,10 @@ export class ContactService {
   }
   emptyContactForDialog(){
     this.contactForDialog.next(undefined);
+  }
+
+  setSearchValue(searchValue){
+    this.searchValue.next(searchValue);
   }
 
 

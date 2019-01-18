@@ -1,0 +1,6 @@
+<form [formGroup]="searchValue">
+  <mat-form-field class="example-full-width" color="accent">
+    <input type="tel" matInput placeholder="Search contacts" formControlName="search" (input)="onInput()">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>

@@ -13,12 +13,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ContactListComponent implements OnInit {
   contacts: Contact[] = [];
+  contactsToShow: Contact[] = [];
+  searchValue:string = '';
 
   constructor(private contactService: ContactService, public dialog: MatDialog, private authService:AuthService, private afs: AngularFirestore) { }
 
   ngOnInit() {
     // this.getContacts();
     this.getAllFBContacts();
+    this.filterContacts();
 
     // this.contactService.pruebaCrearSubcoleccionFirestore();
 
@@ -93,5 +96,31 @@ export class ContactListComponent implements OnInit {
       }
     })
   }
+
+  filterContacts(): void {
+      this.contactService.searchValue.subscribe(searchValue => {
+        this.searchValue = searchValue;
+        this.contacts.map(contact => {
+          const contactObject = contact;
+          if (contact.name.toLowerCase().includes(searchValue)){
+            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+              return false
+            } else {
+              this.contactsToShow.push(contactObject)
+              return this.contactService.sortFBContacts(this.contactsToShow);
+            }
+          } else {
+            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+              const indexOfContactToDelete = this.contactsToShow.indexOf(contact);
+              this.contactsToShow.splice(indexOfContactToDelete, 1);
+              return this.contactService.sortFBContacts(this.contactsToShow);
+            } else {
+              return false
+            }
+          }
+        });
+      });
+  }
+
 
 }
