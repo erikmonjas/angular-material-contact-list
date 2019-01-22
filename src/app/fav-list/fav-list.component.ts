@@ -42,7 +42,7 @@ export class FavListComponent implements OnInit {
             e.payload.doc.data() as Contact
           )
           this.favs = this.contacts.filter(contact => !!contact.isFav);
-          return this.contactService.sortFBContacts(this.contacts);
+          return this.contactService.sortFBContacts(this.favs);
         })
       }
     })
@@ -96,25 +96,29 @@ export class FavListComponent implements OnInit {
   filterContacts(): void {
       this.contactService.searchValue.subscribe(searchValue => {
         this.searchValue = searchValue;
-        this.favs.map(contact => {
-          const contactObject = contact;
-          if (contact.name.toLowerCase().includes(searchValue)){
-            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
-              return false
+        if (this.searchValue.length < 1){
+          this.contactService.sortFBContacts(this.favs);
+        } else {
+          this.favs.map(contact => {
+            const contactObject = contact;
+            if (contact.name.toLowerCase().includes(searchValue)){
+              if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+                return false
+              } else {
+                this.contactsToShow.push(contactObject)
+                return this.contactService.sortFBContacts(this.contactsToShow);
+              }
             } else {
-              this.contactsToShow.push(contactObject)
-              return this.contactService.sortFBContacts(this.contactsToShow);
+              if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
+                const indexOfContactToDelete = this.contactsToShow.indexOf(contact);
+                this.contactsToShow.splice(indexOfContactToDelete, 1);
+                return this.contactService.sortFBContacts(this.favs);
+              } else {
+                return false
+              }
             }
-          } else {
-            if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
-              const indexOfContactToDelete = this.contactsToShow.indexOf(contact);
-              this.contactsToShow.splice(indexOfContactToDelete, 1);
-              return this.contactService.sortFBContacts(this.contactsToShow);
-            } else {
-              return false
-            }
-          }
-        });
+          });
+        }
       });
   }
 

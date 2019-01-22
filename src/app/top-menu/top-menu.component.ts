@@ -12,7 +12,7 @@ export class TopMenuComponent implements OnInit {
   showingFavs:boolean = false;
   @Output() favsView = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private contactService:ContactService) { }
 
   ngOnInit() {
   }
@@ -20,12 +20,14 @@ export class TopMenuComponent implements OnInit {
   showAll() {
     this.showingAll = true;
     this.showingFavs = false;
+    this.contactService.setSearchValue('');
     this.favsView.emit(false);
   }
   
   showFavs() {
     this.showingAll = false;
     this.showingFavs = true;
+    this.contactService.setSearchValue('');
     this.favsView.emit(true);
   }
 

@@ -17,6 +17,12 @@ export class SearchComponent implements OnInit {
   constructor(private contactService:ContactService, private fb:FormBuilder) { }
 
   ngOnInit() {
+    this.contactService.searchValue.subscribe(data => {
+      if (data === ''){
+        this.searchValue.value.search = '';
+        this.searchValue.reset();
+      }
+    })
   }
 
   onInput(){
