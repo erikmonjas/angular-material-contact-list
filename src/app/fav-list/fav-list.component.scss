@@ -66,17 +66,7 @@
 .table__row {
     padding: 15px 10px 8px 10px;
     position: relative;
-    &:after{
-        content: '';
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: calc(100% - 30px);
-        height: 1px;
-        background-color: #646464;
-    }
+    border-bottom: 1px solid #646464;
 }
 
 .no-contacts {

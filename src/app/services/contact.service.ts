@@ -21,10 +21,28 @@ export class ContactService {
 
   searchValue = new BehaviorSubject<any>('');
 
+  contacts = new BehaviorSubject<Contact[]>([]);
+
   // getContacts(): Observable<Contact[]> {
   //   this.sortContacts();
   //   return of(CONTACTS);
   // }
+
+  getAllFBContacts(){
+    let userUID:string;
+    this.authService.getAuth().subscribe( auth => {
+      if(!!auth){
+        userUID = auth.uid;
+        this.afs.collection(userUID).snapshotChanges().subscribe(data => {
+          const contactsToSort = data.map(e => 
+            e.payload.doc.data() as Contact
+          );
+          this.sortFBContacts(contactsToSort);
+          return this.contacts.next(contactsToSort)
+        })
+      }
+    })
+  }
 
   // createContact(contact): void{
   //   CONTACTS.push(contact);

@@ -13,7 +13,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./fav-list.component.scss']
 })
 export class FavListComponent implements OnInit {
-  contacts: Contact[] = [];
   favs: Contact[] = [];
   contactsToShow: Contact[] = [];
   searchValue:string;
@@ -21,7 +20,9 @@ export class FavListComponent implements OnInit {
   constructor(private contactService: ContactService, public dialog: MatDialog, private authService:AuthService, private afs:AngularFirestore) { }
 
   ngOnInit() {
-    this.getAllFBContacts();
+    this.contactService.contacts.subscribe(contacts => {
+      this.favs = contacts.filter(contact => !!contact.isFav);
+    })
     this.filterContacts();
     // this.getContacts();
     // this.favs = this.contacts.filter(contact => !!contact.isFav);
@@ -31,22 +32,6 @@ export class FavListComponent implements OnInit {
   //   this.contactService.getContacts()
   //     .subscribe(contacts => this.contacts = contacts);
   // }
-
-  getAllFBContacts(){
-    let userUID:string;
-    this.authService.getAuth().subscribe( auth => {
-      if(!!auth){
-        userUID = auth.uid;
-        this.afs.collection(userUID).snapshotChanges().subscribe(data => {
-          this.contacts = data.map(e => 
-            e.payload.doc.data() as Contact
-          )
-          this.favs = this.contacts.filter(contact => !!contact.isFav);
-          return this.contactService.sortFBContacts(this.favs);
-        })
-      }
-    })
-  }
 
   // deleteContact(id){
   //   this.contactService.deleteContact(id);
@@ -80,7 +65,7 @@ export class FavListComponent implements OnInit {
   // }
 
   openDialog(id): void {
-    let thisContact = this.contacts.find(contact => contact.id == id);
+    let thisContact = this.favs.find(contact => contact.id == id);
     this.contactService.contactDataForDialog(thisContact);
     if (window.innerWidth < 768){
       const dialogRef = this.dialog.open(ContactFormComponent, {
@@ -95,13 +80,13 @@ export class FavListComponent implements OnInit {
 
   filterContacts(): void {
       this.contactService.searchValue.subscribe(searchValue => {
-        this.searchValue = searchValue;
+        this.searchValue = searchValue.toLowerCase();
         if (this.searchValue.length < 1){
           this.contactService.sortFBContacts(this.favs);
         } else {
           this.favs.map(contact => {
             const contactObject = contact;
-            if (contact.name.toLowerCase().includes(searchValue)){
+            if (contact.name.toLowerCase().includes(searchValue.toLowerCase())){
               if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
                 return false
               } else {

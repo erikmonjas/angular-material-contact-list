@@ -20,7 +20,8 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     // this.getContacts();
-    this.getAllFBContacts();
+    this.contactService.getAllFBContacts();
+    this.contactService.contacts.subscribe(contacts => this.contacts = contacts);
     this.filterContacts();
 
     // this.contactService.pruebaCrearSubcoleccionFirestore();
@@ -82,27 +83,12 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  getAllFBContacts(){
-    let userUID:string;
-    this.authService.getAuth().subscribe( auth => {
-      if(!!auth){
-        userUID = auth.uid;
-        this.afs.collection(userUID).snapshotChanges().subscribe(data => {
-          this.contacts = data.map(e => 
-            e.payload.doc.data() as Contact
-          )
-          return this.contactService.sortFBContacts(this.contacts);
-        })
-      }
-    })
-  }
-
   filterContacts(): void {
       this.contactService.searchValue.subscribe(searchValue => {
-        this.searchValue = searchValue;
+        this.searchValue = searchValue.toLowerCase();
         this.contacts.map(contact => {
           const contactObject = contact;
-          if (contact.name.toLowerCase().includes(searchValue)){
+          if (contact.name.toLowerCase().includes(searchValue.toLowerCase())){
             if(!!this.contactsToShow.find(contact => contact.id == contactObject.id)){
               return false
             } else {
